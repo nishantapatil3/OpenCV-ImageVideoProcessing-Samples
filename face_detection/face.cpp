@@ -1,28 +1,28 @@
 #include "opencv2/objdetect/objdetect.hpp"
- #include "opencv2/highgui/highgui.hpp"
- #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 
- #include <iostream>
- #include <stdio.h>
+#include <iostream>
+#include <stdio.h>
 
- using namespace std;
- using namespace cv;
+using namespace std;
+using namespace cv;
 
- /** Function Headers */
- void detectAndDisplay( Mat frame );
+/** Function Headers */
+void detectAndDisplay( Mat frame );
 
- /** Global variables */
- String face_cascade_name = "haarcascade_frontalface_alt.xml";
- String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
- CascadeClassifier face_cascade;
- CascadeClassifier eyes_cascade;
- string window_name = "Capture - Face detection";
- RNG rng(12345);
+/** Global variables */
+String face_cascade_name = "haarcascade_frontalface_alt.xml";
+String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
+CascadeClassifier face_cascade;
+CascadeClassifier eyes_cascade;
+string window_name = "Capture - Face detection";
+RNG rng(12345);
 
- /** @function main */
- int main( int argc, const char** argv )
- {
-   CvCapture* capture;
+/** @function main */
+int main( int argc, const char** argv ) 
+{
+   VideoCapture capture(-1);
    Mat frame;
 
    //-- 1. Load the cascades
@@ -30,12 +30,11 @@
    if( !eyes_cascade.load( eyes_cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
 
    //-- 2. Read the video stream
-   capture = cvCaptureFromCAM( -1 );
-   if( capture )
+   if( capture.isOpened() )
    {
      while( true )
      {
-   frame = cvQueryFrame( capture );
+   capture.read(frame);
 
    //-- 3. Apply the classifier to the frame
        if( !frame.empty() )
