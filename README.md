@@ -24,4 +24,16 @@ just open file called /etc/ld.so.conf.d/opencv.conf then insert
 ```
 then type: ```sudo ldconfig```
 
-## 1. 
+## 1. Opencv Test
+Test Opencv install and verify library linking
+
+Written a small code in C++ to display an image.
+
+## 2. Red Detection
+Live color detection set to detect 'red'
+
+## 3. Face and Eyes Detection
+Live face and eye detection.
+
+## 4. Background Subtraction
+Delete static image with live image to obtaion background subtraction.
